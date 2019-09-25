@@ -1,10 +1,10 @@
 # imbd_movie_mini_project
 
 #### Instructions
-All of the functions needed to solve the problem set can be found in tasks.py. Please let me know if you have any questions, want more explanation, or want to see more work done in a specific area.
+&ensp; &ensp; &ensp; All of the functions needed to solve the problem set can be found in tasks.py. Please let me know if you have any questions, want more explanation, or want to see more work done in a specific area.
 
 #### Problems Solved:
-In the tasks.py file there are a few different variations of finding profitability. The functions can be used to return any of the following:
+&ensp; &ensp; &ensp; In the tasks.py file there are a few different variations of finding profitability. The functions can be used to return any of the following:
 - Top 10 genres in decreasing order
    - Profitability calculated by sum of ‘gross’ minus sum of ‘budget’
       - **RESULT:** [Comedy, Family, Adventure, Romance, Fantasy, Thriller, Action, Mystery, Music, Sport]
@@ -23,7 +23,7 @@ In the tasks.py file there are a few different variations of finding profitabili
 - Genre model that only has a name attribute
 - Movie model that contains all the other fields from the csv file
 
-For the database design I decided to break it up into a few different models. Mainly because this is more like a real world application for a database design. Given more problems to solve and a more real world application, the models could be broken up further.
+&ensp; &ensp; &ensp; For the database design I decided to break it up into a few different models. Mainly because this is more like a real world application for a database design. Given more problems to solve and a more real world application, the models could be broken up further.
 
 #### Assumptions:
 - An actor’s facebook likes are the same across all movies
@@ -31,7 +31,7 @@ For the database design I decided to break it up into a few different models. Ma
 - Lot of assumptions with input types and trusting valid data from csv
 
 #### Importing:
-For importing the csv into the database, I thought about using Django’s bulk_create function for improved efficiency. But ultimately, decided to just create each object individually because bulk_create does not support many-to-many relationships.  After some research it looks like bulk_create might be feasible by using a through model to save the many to many relationships. However, since it is a one time file upload, I decided speed was not a major concern. Furthermore, if speed was a concern, it would be best to do the import directly with SQL. I saw some interesting solutions involving SQL, however I do not have experience with that particular case so I decided to keep this project simple and not dive into that at this time. I used @transaction.atomic to help with the speed in my local environment. Since I am using SQLite which is slow on writes, atomic helped save time.
+&ensp; &ensp; &ensp; For importing the csv into the database, I thought about using Django’s bulk_create function for improved efficiency. But ultimately, decided to just create each object individually because bulk_create does not support many-to-many relationships.  After some research it looks like bulk_create might be feasible by using a through model to save the many to many relationships. However, since it is a one time file upload, I decided speed was not a major concern. Furthermore, if speed was a concern, it would be best to do the import directly with SQL. I saw some interesting solutions involving SQL, however I do not have experience with that particular case so I decided to keep this project simple and not dive into that at this time. I used @transaction.atomic to help with the speed in my local environment. Since I am using SQLite which is slow on writes, atomic helped save time.
 
 #### Libraries used:
 Everything shown in requirements.txt
@@ -44,4 +44,4 @@ Everything shown in requirements.txt
 5. Wrote unit tests, refactored, overall cleanup
 
 #### Unit Testing:
-Only wrote tests for some of the app, and only some of the cases. A lot of the functions were similar so I felt it was trivial to do a full 100% coverage. The way I as taught to unit test is isolate the purpose of the function and mock out any other calls. Sometimes, this even includes mocking out queries, because testing a complex query is an integration test. These could be improved on given more time.
+&ensp; &ensp; &ensp; Only wrote tests for some of the app, and only some of the cases. A lot of the functions were similar so I felt it was trivial to do a full 100% coverage. The way I as taught to unit test is isolate the purpose of the function and mock out any other calls. Sometimes, this even includes mocking out queries, because testing a complex query is an integration test. These could be improved on given more time.
