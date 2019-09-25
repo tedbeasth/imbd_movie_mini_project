@@ -8,7 +8,13 @@ from imbdapp.models import *
 
 @transaction.atomic
 def import_movies_csv():
-	""" imports from a csv file using pandas and populates the database. Csv file must be in the correct format
+	""" imports from a csv file using pandas and populates the database. Csv file must be in the correct format.
+	Creates Movie, Person, and Genre objects if they do not already exist. Uses transaction.atomic decorator.
+	
+	#alternate method using python's DictReader
+	with open('imbdapp/csv_files/movie_metadata.csv', newline='') as csvfile:
+		reader = csv.DictReader(csvfile)
+		for row in reader:
 	"""
 	#TODO account for duplicate movie titles?
 	#using pandas
@@ -22,7 +28,7 @@ def import_movies_csv():
 			Movie.create(actors=actors, genres=genres, **row)
 			
 	"""
-	#using python's DictReader
+	#alternate method using python's DictReader
 	with open('imbdapp/csv_files/movie_metadata.csv', newline='') as csvfile:
 		reader = csv.DictReader(csvfile)
 		for row in reader:
@@ -30,13 +36,13 @@ def import_movies_csv():
 			director = create_or_get_director_from_row(row)
 			row["director"] = director
 			Movie.create(actors=actors, **row)
-			
-				MyModel.objects.bulk_create([
-			MyModel(**data) for data in model_data
-			])
 	"""
 
 def create_or_get_actors_from_row(row):
+	""" Takes a dictionary of data, and gets or creates Person objects based on that data
+		expected to contain maximum of three actors. Function could be extended to handle a dynamic amount.
+		returns all the Person objects gotten or created
+	"""
 	actors = []
 	for actor_count in range(1,4):
 		actor_name = row["actor_{}_name".format(actor_count)]
@@ -49,6 +55,10 @@ def create_or_get_actors_from_row(row):
 	return actors
 
 def create_or_get_genres_from_row(row):
+	""" Takes a dictionary of data, and gets or creates Genres objects based on that data
+		row['genres'] is expected to be a string of genres separated by |
+		returns all the Genre objects gotten or created
+	"""
 	genres = []
 	genre_names = row.pop('genres').split('|')
 	for genre_name in genre_names:
@@ -58,6 +68,9 @@ def create_or_get_genres_from_row(row):
 	return genres
 
 def create_or_get_director_from_row(row):
+	""" Takes a dictionary of data, and gets or creates a Person object based on that data
+		returns the Person
+	"""
 	facebook_likes = row["director_facebook_likes"]
 	if is_empty_value(facebook_likes):
 		facebook_likes = 0

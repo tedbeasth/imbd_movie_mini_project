@@ -11,6 +11,9 @@ from django.utils import timezone
 import pandas as pd
 
 def is_empty_value(value):
+	"""Checks if value is empty, None, or a pandas Null
+		returns boolean
+	"""
 	if not value or value in [None, "nan", ''] or pd.isnull(value):
 		return True
 	return False
@@ -43,11 +46,17 @@ class Person(ModelBase):
 		return person
 	
 	def is_actor(self):
+		"""Checks if Person is in at least one movie as an actor
+			returns boolean
+		"""
 		if self.movies_as_actor.all():
 			return True
 		return False
 	
 	def is_director(self):
+		"""Checks if Person is in at least one movie as a director
+			returns boolean
+		"""
 		if self.movies_as_director.all():
 			return True
 		return False
@@ -104,7 +113,9 @@ class Movie(ModelBase):
 		return movie
 	
 	def get_actors_names(self):
+		""" returns string of all actors names for movie separated by commas"""
 		return ", ".join([actor.name for actor in self.actors.all()])
 	
 	def get_genres_names(self):
+		""" returns string of all genres names for movie separated by commas"""
 		return ", ".join([genre.name for genre in self.genres.all()])
