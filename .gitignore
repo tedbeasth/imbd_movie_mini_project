@@ -37,7 +37,7 @@ local_settings.py
 imbdenv/
 celerybeat*
 *.key
-src/staticfiles/
+imbd_movie/staticfiles/
 src/my_fixtures.json
 .elasticbeanstalk*
 
