@@ -20,12 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'rq664&zk9e=58kx+j^_j4d+kqx6#azz2ukh3_k4jp4ub02qyf4'
+ALLOWED_HOSTS = ['https://imbd-project.herokuapp.com/']
+SECRET_KEY = os.getenv('IMBD_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
 
 
 # Application definition
