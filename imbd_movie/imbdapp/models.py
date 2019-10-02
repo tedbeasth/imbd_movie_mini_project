@@ -112,6 +112,10 @@ class Movie(ModelBase):
 			movie.genres.add(*genres)
 		return movie
 	
+	@property
+	def get_genres(self):
+		return self.get_genres_names()
+	
 	def get_actors_names(self):
 		""" returns string of all actors names for movie separated by commas"""
 		return ", ".join([actor.name for actor in self.actors.all()])

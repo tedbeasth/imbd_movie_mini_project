@@ -1,0 +1,17 @@
+{% if items.has_other_pages %}
+	<ul class="pagination">
+	  {% if items.has_previous %}
+		<a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a>
+	  {% endif %}
+	  {% for i in items.paginator.page_range %}
+		{% if items.number == i %}
+		  <li class="active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+		{% elif i > items.number|add:'-3' and i < items.number|add:'3' %}
+		  <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+		{% endif %}
+	  {% endfor %}
+	  {% if items.has_next %}
+		<li><a class="page-link" href="?page={{ items.next_page_number }}">&raquo;</a></li>
+	  {% endif %}
+	</ul>
+{% endif %}
