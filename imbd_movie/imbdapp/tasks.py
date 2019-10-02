@@ -78,39 +78,39 @@ def create_or_get_director_from_row(row):
 	director, created = Person.objects.get_or_create(**director_data)
 	return director
 
-def get_top_profitable_genres_by_total(num_genres=10):
+def get_top_profitable_genres_by_total(num_items=10):
 	""" Returns the top genres based on profitability.
 		profitability is calculated by total gross - total budget
 		descreasing order
 	"""
-	top_genres = Genre.objects.annotate(profitability=Sum('movies_set__gross') - Sum('movies_set__budget')).order_by('-profitability')[:num_genres]
+	top_genres = Genre.objects.annotate(profitability=Sum('movies_set__gross') - Sum('movies_set__budget')).order_by('-profitability')[:num_items]
 	return top_genres
 
-def get_top_profitable_genres_by_average(num_genres=10):
+def get_top_profitable_genres_by_average(num_items=10):
 	""" Returns the top genres based on profitability.
 		profitability is calculated by average gross - average budget
 		descreasing order
 	"""
-	top_genres = Genre.objects.annotate(profitability=Avg('movies_set__gross') - Avg('movies_set__budget')).order_by('-profitability')[:num_genres]
+	top_genres = Genre.objects.annotate(profitability=Avg('movies_set__gross') - Avg('movies_set__budget')).order_by('-profitability')[:num_items]
 	return top_genres
 
-def get_top_profitable_actors_by_total(num_genres=10):
+def get_top_profitable_actors_by_total(num_items=10):
 	""" Returns the top actors based on profitability.
 		profitability is calculated by total gross - total budget
 		descreasing order
 	"""
-	top_actors = Person.objects.annotate(profitability=Avg('movies_as_actor__gross') - Avg('movies_as_actor__budget')).order_by('-profitability')[:num_genres]
+	top_actors = Person.objects.annotate(profitability=Avg('movies_as_actor__gross') - Avg('movies_as_actor__budget')).order_by('-profitability')[:num_items]
 	return top_actors
 
-def get_top_profitable_directors_by_total(num_genres=10):
+def get_top_profitable_directors_by_total(num_items=10):
 	""" Returns the top directors based on profitability.
 		profitability is calculated by total gross - total budget
 		descreasing order
 	"""
-	top_directors = Person.objects.annotate(profitability=Avg('movies_as_director__gross') - Avg('movies_as_director__budget')).order_by('-profitability')[:num_genres]
+	top_directors = Person.objects.annotate(profitability=Avg('movies_as_director__gross') - Avg('movies_as_director__budget')).order_by('-profitability')[:num_items]
 	return top_directors
 
-def get_top_profitable_persons_by_total(num_genres=10):
+def get_top_profitable_persons_by_total(num_items=10):
 	""" Returns the top persons based on profitability.
 		profitability is calculated by total gross - total budget
 		persons can either be the director or the actor
@@ -119,5 +119,5 @@ def get_top_profitable_persons_by_total(num_genres=10):
 	top_directors = get_top_profitable_directors_by_total()
 	top_actors = get_top_profitable_actors_by_total()
 	top_persons_list = list(top_actors) + list(top_directors)
-	sorted_persons = sorted(top_persons_list, key=lambda person: person.profitability, reverse=True)[:10]
+	sorted_persons = sorted(top_persons_list, key=lambda person: person.profitability, reverse=True)[:num_items]
 	return sorted_persons

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    {# Make modifiable head elements #}
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <title>{% block title %}IMBD Mini Project{% endblock title %}</title>
+    </head>
+    <header>
+            <h2> IMBD Mini Project </h2>
+    </header>
+    <body>
+        
+        
+        {% block body %}{% endblock body %}
+
+            <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/movies">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profitability/">Profitability</a>
+                    </li>
+            </ul>
+
+
+        <div class="container"></div>    
+        <div class="container">
+            <h1 class="content-name">{% block content_name %}{% endblock content_name %}</h1>
+            {% block content %}{% endblock content %}
+        </div>
+        
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    
+        {% block js %}{% endblock js %}
+    
+
+</body>
+<footer>
+        
+</footer>
+</html>
+
+
+<style>
+
+
+header{
+    text-align: center;
+    color: yellow;
+    background-color: #339900; 
+    padding: 50px;
+}
+
+.nav{
+    background-color: lightgray; 
+}
+
+.nav-link{
+    color: #454d55;
+}
+
+.nav-item{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+a:hover {
+  color: #339900;
+  text-decoration: None;
+}
+
+
+.content-name{
+    text-align: center;
+    padding: 75px;
+}
+
+.list-items{
+    background-color: #339900;
+}
+
+a {
+    color: black;
+}
+
+.standings-a{
+    color: white;
+}
+
+.head-li{
+    background-color: #339900;
+    color: white;
+}
+
+.info-li{
+    background-color: lightgray;
+}
+
+</style>

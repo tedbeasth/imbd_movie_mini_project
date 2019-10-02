@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content_name %}{% endblock content_name %}
+{% block content %}
+<div style="padding-bottom: 150px">
+<ul class="nav navbar-nav ml-auto w-100">
+	<li class="nav-item dropdown">
+	  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Calculate Profitability
+	  </a>
+	  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		<div class="btn-group dropright">
+		<a class="dropdown-item" href="?filter_type=genre_average">Top Genres By Average</a>
+		<a class="dropdown-item" href="?filter_type=genre_total">Top Genres By Total</a>
+		<a class="dropdown-item" href="?filter_type=actors">Top Actors</a>
+		<a class="dropdown-item" href="?filter_type=directors">Top Directors</a>
+		<a class="dropdown-item" href="?filter_type=people">Top People</a>
+	  </div>
+	  </div>
+	</li>
+  </ul>
+<table class="table table-dark table-bordered table-striped">
+    <strong><li class="list-group-item head-li" style="text-align: center"><h2>{{title}}</h2></li></strong>
+        <thead>
+          <tr>
+						<th style="width: 6%">#</th>
+            <th>Name</th>
+						<th>Profitability</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+          <tr>
+						<td>{{forloop.counter}}</td>
+            <td>{{item.name}}</td>
+						<td>{{item.profitability}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+{% endblock content %}
