@@ -49,7 +49,7 @@ def create_or_get_actors_from_row(row):
 		facebook_likes = row["actor_{}_facebook_likes".format(actor_count)]
 		if is_empty_value(facebook_likes):
 			facebook_likes = 0
-		actor_data = {'name': actor_name, 'facebook_likes': facebook_likes}
+		actor_data = {'name': actor_name}
 		actor, created = Person.objects.get_or_create(**actor_data)
 		actors.append(actor)
 	return actors
@@ -74,7 +74,7 @@ def create_or_get_director_from_row(row):
 	facebook_likes = row["director_facebook_likes"]
 	if is_empty_value(facebook_likes):
 		facebook_likes = 0
-	director_data = {'name': row["director_name"], 'facebook_likes': facebook_likes}
+	director_data = {'name': row["director_name"]}
 	director, created = Person.objects.get_or_create(**director_data)
 	return director
 
