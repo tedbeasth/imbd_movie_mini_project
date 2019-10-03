@@ -32,7 +32,7 @@
           <tr>
 						<td>{{forloop.counter}}</td>
             <td>{{item.name}}</td>
-						<td>{{item.profitability}}</td>
+						<td>{{item.profitability|floatformat:2 }}</td>
           </tr>
           {% endfor %}
         </tbody>
