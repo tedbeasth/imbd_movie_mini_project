@@ -117,8 +117,8 @@ def get_top_profitable_persons_by_total(num_items=10):
 		descreasing order
 		if a person is both a director and an actor, it does not combine their totals. Treated separately.
 	"""
-	top_directors = get_top_profitable_directors_by_total()
-	top_actors = get_top_profitable_actors_by_total()
+	top_directors = get_top_profitable_directors_by_total(num_items)
+	top_actors = get_top_profitable_actors_by_total(num_items)
 	top_persons_list = list(top_actors) + list(top_directors)
 	sorted_persons = sorted(top_persons_list, key=lambda person: person.profitability, reverse=True)[:num_items]
 	return sorted_persons
