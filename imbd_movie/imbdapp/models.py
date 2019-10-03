@@ -45,6 +45,20 @@ class Person(ModelBase):
 		person.save()
 		return person
 	
+	@property
+	def is_actor(self):
+		"""Checks if Person is in at least one movie as an actor
+			returns boolean
+		"""
+		return self.is_actor()
+	
+	@property
+	def is_director(self):
+		"""Checks if Person is in at least one movie as a director
+			returns boolean
+		"""
+		return self.is_director()
+	
 	def is_actor(self):
 		"""Checks if Person is in at least one movie as an actor
 			returns boolean
@@ -61,11 +75,19 @@ class Person(ModelBase):
 			return True
 		return False
 	
+	@property
+	def get_num_movies(self):
+		return self.movies_as_actor.count() + self.movies_as_director.count()
+	
 class Genre(ModelBase):
 	name = models.CharField(max_length=500)
 	
 	def __str__(self):
 		return self.name
+	
+	@property
+	def get_num_movies(self):
+		return self.movies_set.count()
 	
 class Movie(ModelBase):
 	duration = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)

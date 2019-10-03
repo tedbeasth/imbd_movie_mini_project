@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from imbdapp.models import Movie
+from imbdapp.models import Movie, Genre, Person
 from imbdapp.tasks import *
 
 def paginator_helper(query_set, page, num_per_page=50):
@@ -15,8 +15,24 @@ def paginator_helper(query_set, page, num_per_page=50):
 		data = paginator.page(paginator.num_pages)
 	return data
 
+def actors_and_directors(request):
+	"""shows all the Persons in a table with pagination"""
+	people = Person.objects.filter(is_active=True)
+	page = request.GET.get('page', 1)
+	people_data = paginator_helper(people, page, 50)
+	context = {'people': people_data}
+	return render(request, 'people.html', context)
+
+def genres(request):
+	"""shows all the Genres in a table with pagination"""
+	genres = Genre.objects.filter(is_active=True)
+	page = request.GET.get('page', 1)
+	genres_data = paginator_helper(genres, page, 50)
+	context = {'genres': genres_data}
+	return render(request, 'genres.html', context)
+
 def movies(request):
-	"""shows all the movies in a table with pagination"""
+	"""shows all the Movies in a table with pagination"""
 	movies = Movie.objects.filter(is_active=True)
 	page = request.GET.get('page', 1)
 	movies_data = paginator_helper(movies, page, 50)
@@ -47,10 +63,7 @@ def get_profitable_items(filter_type, num_items=10):
 	
 def profitability(request):
 	"""calculates most profitable items depending on the filter_type and shows them in a table"""
-	if 'filter_type' in request.GET:
-		filter_type = request.GET['filter_type']
-	else:
-		filter_type = ''
+	filter_type = request.GET.get('filter_type', '')
 	try:
 		num_items = int(request.GET['num_items'])
 	except:

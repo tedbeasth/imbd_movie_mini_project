@@ -8,6 +8,8 @@ from . import views
 urlpatterns = [
 
     path('movies/', views.movies, name='movies'),
+    path('people/', views.actors_and_directors, name='actors_and_directors'),
+    path('genres/', views.genres, name='genres'),
     url(r'^profitability/$', views.profitability, name='profitability'),
     url(r'^$', RedirectView.as_view(url='/movies')),
 

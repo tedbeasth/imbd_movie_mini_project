@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content_name %}{% endblock content_name %}
+{% block content %}
+<div style="padding-bottom: 150px">
+{% include "pagination.html" with items=genres %}
+<table class="table table-dark table-bordered table-striped">
+    <strong><li class="list-group-item head-li" style="text-align: center"><h2>All Genres</h2></li></strong>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th># of Movies</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for genre in genres %}
+          <tr>
+            <td>{{genre.name}}</td>
+            <td>{{genre.get_num_movies}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+	{% include "pagination.html" with items=genres %}
+  </div>
+{% endblock content %}
