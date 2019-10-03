@@ -1,8 +1,8 @@
 # imbd_movie_mini_project
 
-#### Instructions for webapp
 &ensp; &ensp; &ensp; The app has been deployed on heroku at the following url: https://imbd-project.herokuapp.com/
 
+#### Instructions for webapp
 &ensp; &ensp; &ensp; I did not spend much time with the styling and frontend design. Given time restraints, I just wanted to make a simple UI to be able to see the app in action. The webapp consists of four pages: one page each for actors and directors, movies, and genres that shows a table of all the objects (with pagination). And another page to allow for the user to compute profitability. For the profitability page, just select one of the options in the drop down menu and you should see the results populate the page. As an additional feature, if you want, you can add a query string at the end of the url called "num_items". This will do the same profitability computation, but show however many results the user chooses. The default number of results is 10, as described in the project description. An example of the url to get the top 20 profitable actors is: https://imbd-project.herokuapp.com/profitability/?filter_type=actors&num_items=20 . Normally I would add an input field for the user to specify how many actors they want, but I felt that was unnecessary for this small project. Also, the size of the database exceeds Heroku's free tier plan, so there is a chance the app stops working on 10/9/2019.
 
 #### Instructions for command line
@@ -21,7 +21,7 @@ Once the shell is running, you can run the following commands below inside of th
 6. <code>from imbadapp.tasks import *</code> you now have access to all the functions inside of imbdapp/tasks.py
 7. <code>import_movies_csv()</code> this function will populate your local database from the csv file downloaded from kaggle. Should only be run once.
 
-8. In the shell, you can now run any of the 5 funtions to compute profitability on your local database. These functions will not work if you did not correctly upload the data into your local database. There are five of these functions: get_top_profitable_genres_by_total(), get_top_profitable_genres_by_average(), get_top_profitable_actors_by_total(), get_top_profitable_directors_by_total, get_top_profitable_persons_by_total().
+8. In the shell, you can now run any of the 5 funtions to compute profitability on your local database. These functions will not work if you did not correctly upload the data into your local database. There are five of these functions: get_top_profitable_genres_by_total(), get_top_profitable_genres_by_average(), get_top_profitable_actors_by_total(), get_top_profitable_directors_by_total(), get_top_profitable_persons_by_total().
 
 Please let me know if you run into any problems, bugs, or would like to see a specific area expanded on.
 
@@ -34,11 +34,11 @@ Please let me know if you run into any problems, bugs, or would like to see a sp
    - Profitability calculated by average of ‘gross’ minus average of ‘budget’
       - **RESULT:** [Family, Fantasy, Music, Musical, Sport, Adventure, Mystery, Romance, Comedy, Biography]
 - Top 10 actors in decreasing order calculated by sum of ‘gross’ minus sum of ‘budget’
-   - **RESULT:** [Peter Cushing, Kenny Baker, Catherine Dyer, Dee Wallace, Chirs Miller, Kathleen Freeman, Hattie McDaniel, George Reeves, Fiona Shaw, Adriana Caselotti]
+   - **RESULT:** [Harrison Ford, Scarlett Johansson, Robert Downey Jr., Tom Hanks, Steve Carell, Morgan Freeman, Bradley Cooper, Jennifer Lawrence, John Ratzenberger, Robert Pattinson]
 - Top 10 directors in decreasing order calculated by sum of ‘gross’ minus sum of ‘budget’
-   - **RESULT:** [Tim Miller, George Lucas, Richard Marquand, Kyle Balda, Colin Trevorrow, Chris Buck, Joss Whedon, Yarrow Cheney, Pierre Coffin, Lee Unkrich]
+   - **RESULT:** [Steven Spielberg, George Lucas, James Cameron, Joss Whedon, Chris Columbus, Peter Jackson, Tim Burton, Christopher Nolan, Jon Favreau, Francis Lawrence]
 - Top 10 of either actors or directors in decreasing order calculated by sum of ‘gross’ minus sum of ‘budget’
-   - **RESULT:** [Peter Cushing, Tim Miller, George Lucas, Richard Marquand, Kenny Baker, Kyle Balda, Colin Trevorow, Chris Buck, Joss Whedon, Yarrow Cheney]
+   - **RESULT:** [Steven Spielberg, Harrison Ford, Scarlett Johansson, Robert Downey Jr., Tom Hanks, George Lucas, Steve Carell, Morgan Freeman, Bradley Cooper, James Cameron]
 
 
 #### Database Design:
