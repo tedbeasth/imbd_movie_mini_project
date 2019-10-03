@@ -1,7 +1,28 @@
 # imbd_movie_mini_project
 
-#### Instructions
-&ensp; &ensp; &ensp; All of the functions needed to solve the problem set can be found in tasks.py. Please let me know if you have any questions, want more explanation, or want to see more work done in a specific area.
+#### Instructions for webapp
+&ensp; &ensp; &ensp; The app has been deployed on heroku at the following url: https://imbd-project.herokuapp.com/
+
+&ensp; &ensp; &ensp; I did not spend much time with the styling and frontend design. Given time restraints, I just wanted to make a simple UI to be able to see the app in action. The webapp consists of two pages: one page that shows a table of all the movies (with pagination) and a second page to allow for the user to compute profitability. For the profitability page, just select one of the options in the drop down menu and you should see the results populate the page. As an additional feature, if you want, you can add a query string at the end of the url called "num_items". This will do the same profitability computation, but show however many results the user chooses. The default number of results is 10, as described in the project description. An example of the url to get the top 20 profitable actors is: https://imbd-project.herokuapp.com/profitability/?filter_type=actors&num_items=20 . Normally I would add an input field for the user to specify how many actors they want, but I felt that was unnecessary for this small project.
+
+#### Instructions for command line
+&ensp; &ensp; &ensp; The instructions for running this on your local enviornment are a bit more cumbersome simply because you have to set up django, the database, etc. But here are some instructions if you prefer testing the app this way.
+1. Clone the github repo, set up a virtualenv, and activate the enviornment.
+2. add a 'dummy' SECRET_KEY to line 25 of the settings.py. Since this app is now deployed, the secret key isn't in the repository.
+3. run <code>pip3 install -r requirements.txt</code> to download all the dependencies.
+4. run <code>python manage.py migrate</code> to setup the database.
+
+Once that is setup, you can run <code>python manage.py runserver</code> if you want to use the webapp in your localhost browser. You should also run <code>python manage.py collectstatic</code> to make sure the bootsrap css shows up and you will have to change line 24 in the settings.py file to make sure your localhost is allowed. Otherwise, follow these additional steps to run the tasks in the command line.
+
+5. run <code>python manage.py shell</code> this will open up a shell through django.
+
+Once the shell is running, you can run the following commands below inside of the shell.
+
+6. <code>from imbadapp.tasks import *</code> you now have access to all the functions inside of imbdapp/tasks.py
+7. <code>import_movies_csv()</code> this function will populate your local database from the csv file downloaded from kaggle. Should only be run once.
+
+8. In the shell, you can now run any of the 5 funtions to compute profitability on your local database. These functions will not work if you did not correctly upload the data into your local database. There are five of these functions: get_top_profitable_genres_by_total(), get_top_profitable_genres_by_average(), get_top_profitable_actors_by_total(), get_top_profitable_directors_by_total, get_top_profitable_persons_by_total().
+
 
 #### Problems Solved:
 &ensp; &ensp; &ensp; In the tasks.py file there are a few different variations of finding profitability. The functions can be used to return any of the following:
