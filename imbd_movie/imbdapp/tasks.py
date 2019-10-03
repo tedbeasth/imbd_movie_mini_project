@@ -99,7 +99,7 @@ def get_top_profitable_actors_by_total(num_items=10):
 		profitability is calculated by total gross - total budget
 		descreasing order
 	"""
-	top_actors = Person.objects.annotate(profitability=Avg('movies_as_actor__gross') - Avg('movies_as_actor__budget')).exclude(profitability=None).order_by('-profitability')[:num_items]
+	top_actors = Person.objects.annotate(profitability=Sum('movies_as_actor__gross') - Sum('movies_as_actor__budget')).exclude(profitability=None).order_by('-profitability')[:num_items]
 	return top_actors
 
 def get_top_profitable_directors_by_total(num_items=10):
@@ -107,7 +107,7 @@ def get_top_profitable_directors_by_total(num_items=10):
 		profitability is calculated by total gross - total budget
 		descreasing order
 	"""
-	top_directors = Person.objects.annotate(profitability=Avg('movies_as_director__gross') - Avg('movies_as_director__budget')).exclude(profitability=None).order_by('-profitability')[:num_items]
+	top_directors = Person.objects.annotate(profitability=Sum('movies_as_director__gross') - Sum('movies_as_director__budget')).exclude(profitability=None).order_by('-profitability')[:num_items]
 	return top_directors
 
 def get_top_profitable_persons_by_total(num_items=10):
@@ -115,6 +115,7 @@ def get_top_profitable_persons_by_total(num_items=10):
 		profitability is calculated by total gross - total budget
 		persons can either be the director or the actor
 		descreasing order
+		if a person is both a director and an actor, it does not combine their totals. Treated separately.
 	"""
 	top_directors = get_top_profitable_directors_by_total()
 	top_actors = get_top_profitable_actors_by_total()

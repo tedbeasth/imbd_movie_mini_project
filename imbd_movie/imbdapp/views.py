@@ -42,19 +42,19 @@ def movies(request):
 def get_profitable_items(filter_type, num_items=10):
 	"""helper function to determine which calculation to perform. returns title and items"""
 	if filter_type == 'genre_total':
-		title = "Genres By Total"
+		title = "Genres By (Total Gross - Total Budget)"
 		profitable_items = get_top_profitable_genres_by_total(num_items)
 	elif filter_type == 'genre_average':
-		title = "Genres By Average"
+		title = "Genres By (Average Gross - Average Budget)"
 		profitable_items = get_top_profitable_genres_by_average(num_items)
 	elif filter_type == 'actors':
-		title = "Actors By Total"
+		title = "Actors By (Total Gross - Total Budget)"
 		profitable_items = get_top_profitable_actors_by_total(num_items)
 	elif filter_type == 'directors':
-		title = "Directors By Total"
+		title = "Directors By (Total Gross - Total Budget)"
 		profitable_items = get_top_profitable_directors_by_total(num_items)
 	elif filter_type == 'people':
-		title = "People By Total"
+		title = "People By (Total Gross - Total Budget)"
 		profitable_items = get_top_profitable_persons_by_total(num_items)
 	else:
 		title = "Please select one of the filter options above"
