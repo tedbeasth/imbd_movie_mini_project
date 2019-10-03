@@ -23,6 +23,8 @@ Once the shell is running, you can run the following commands below inside of th
 
 8. In the shell, you can now run any of the 5 funtions to compute profitability on your local database. These functions will not work if you did not correctly upload the data into your local database. There are five of these functions: get_top_profitable_genres_by_total(), get_top_profitable_genres_by_average(), get_top_profitable_actors_by_total(), get_top_profitable_directors_by_total, get_top_profitable_persons_by_total().
 
+Please let me know if you run into any problems, bugs, or would like to see a specific area expanded on.
+
 
 #### Problems Solved:
 &ensp; &ensp; &ensp; In the tasks.py file there are a few different variations of finding profitability. The functions can be used to return any of the following:
