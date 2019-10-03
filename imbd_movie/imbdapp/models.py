@@ -27,7 +27,7 @@ class ModelBase(models.Model):
 		abstract = True
 
 class Person(ModelBase):
-	name = models.CharField(max_length=30)
+	name = models.CharField(max_length=500)
 	facebook_likes = models.IntegerField(default=0)
 	
 	def __str__(self):
@@ -62,7 +62,7 @@ class Person(ModelBase):
 		return False
 	
 class Genre(ModelBase):
-	name = models.CharField(max_length=30)
+	name = models.CharField(max_length=500)
 	
 	def __str__(self):
 		return self.name
@@ -81,14 +81,14 @@ class Movie(ModelBase):
 	movie_facebook_likes = models.IntegerField(default=0)
 	num_critic_for_reviews = models.IntegerField(default=0)
 	
-	color = models.CharField(max_length=30, blank=True, null=True)
-	movie_title = models.CharField(max_length=30, blank=True, null=True)
-	plot_keywords = models.CharField(max_length=100, blank=True, null=True)
-	language = models.CharField(max_length=30, blank=True, null=True)
-	country = models.CharField(max_length=30, blank=True, null=True)
-	content_rating = models.CharField(max_length=30, blank=True, null=True) #could make this a choice field
-	title_year = models.CharField(max_length=30, blank=True, null=True) #could be a datetime field
-	movie_imdb_link = models.URLField(max_length=100, blank=True, null=True)
+	color = models.CharField(max_length=500, blank=True, null=True)
+	movie_title = models.CharField(max_length=500, blank=True, null=True)
+	plot_keywords = models.CharField(max_length=500, blank=True, null=True)
+	language = models.CharField(max_length=500, blank=True, null=True)
+	country = models.CharField(max_length=500, blank=True, null=True)
+	content_rating = models.CharField(max_length=500, blank=True, null=True) #could make this a choice field
+	title_year = models.CharField(max_length=500, blank=True, null=True) #could be a datetime field
+	movie_imdb_link = models.URLField(max_length=500, blank=True, null=True)
 	
 	actors = models.ManyToManyField(Person, related_name="movies_as_actor")
 	director = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='movies_as_director', blank=True, null=True)
